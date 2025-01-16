@@ -1,0 +1,20 @@
+﻿@model Recipe_Site.Models.Recipe
+
+<h2>Edit Recipe</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" required />
+    </div>
+    <div class="form-group">
+        <label for="Ingredients">Ingredients</label>
+        <textarea class="form-control" id="Ingredients" name="Ingredients" rows="5" required>@Model.Ingredients</textarea>
+    </div>
+    <div class="form-group">
+        <label for="Instructions">Instructions</label>
+        <textarea class="form-control" id="Instructions" name="Instructions" rows="5" required>@Model.Instructions</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Recipe_Site.Models.Recipe>
+
+@{
+    ViewData["Title"] = "Recipes";
+}
+
+<h2>All Recipes</h2>
+
+<!-- Add a Recipe -->
+<div>
+    <a href="@Url.Action("Create", "Recipes")" class="btn btn-success">Add New Recipe</a>
+    <a href="@Url.Action("Logout", "Account")" class="btn btn-danger">Logout</a>
+</div>
+
+<!-- Display Recipes -->
+<div class="row">
+    @foreach (var recipe in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="~/images/@(string.IsNullOrEmpty(recipe.ImagePath) ? "default-image.jpg" : recipe.ImagePath)" alt="@recipe.Title" />
+                <div class="card-body">
+                    <h5 class="card-title">@recipe.Title</h5>
+                    <p class="card-text">@recipe.Ingredients</p>
+                    <a href="@Url.Action("Details", "Recipes", new { id = recipe.Id })" class="btn btn-primary">View Recipe</a>
+                    <a href="@Url.Action("Delete", "Recipes", new { id = recipe.Id })" class="btn btn-danger">Delete Recipe</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

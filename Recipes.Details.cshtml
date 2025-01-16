@@ -1,0 +1,33 @@
+﻿@model Recipe_Site.Models.Recipe
+
+@{
+    ViewData["Title"] = "Recipe Details";
+}
+
+<h2>@Model.Title</h2>
+
+<p><strong>Ingredients:</strong></p>
+<p>@Model.Ingredients</p>
+
+<p><strong>Instructions:</strong></p>
+<p>@Model.Instructions</p>
+
+<h3>Comments</h3>
+
+<form asp-action="AddComment" method="post">
+    <input type="hidden" name="RecipeId" value="@Model.Id" />
+    <div class="form-group">
+        <label for="CommentText">Add Comment:</label>
+        <textarea class="form-control" id="CommentText" name="CommentText" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Comment</button>
+</form>
+
+<div>
+    <h4>Existing Comments</h4>
+    @foreach (var comment in Model.Comments)
+    {
+        <p><strong>@comment.CreatedBy:</strong> @comment.CommentText</p>
+    }
+</div>
+<a href="@Url.Action("Index", "Recipe")" class="btn btn-primary">Back to Recipes</a>
